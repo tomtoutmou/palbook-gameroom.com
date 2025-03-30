@@ -3,151 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Palbook Gameroom</title>
+    <title>PALBOOK GAMEROOM</title>
     <link rel="icon" href="https://i.postimg.cc/50c2NB4v/gameroom.png">
     <style>
         body {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            margin: 0;
-            background: #191919;
-            color: white;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #191919;
         }
-        #header {
-            background: #3b5998;
+        header {
+            background-color: #3b5998;
             color: white;
+            padding: 20px;
             text-align: left;
-            padding: 10px;
-            font-size: 20px;
-            font-weight: bold;
+            font-size: 24px;
             text-transform: uppercase;
-            padding-left: 20px;
         }
-        #game-selection {
+        .container {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            gap: 20px;
         }
-        .game-card {
-            background: #262c3a;
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: opacity 1s ease;
-            width: 220px;
+        .game-list {
+            width: 250px;
+            padding: 20px;
+            background-color: #262c3a;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            gap: 20px;
+            display: none;
         }
-        .game-card img.game-thumbnail {
-            width: 220px;
-            height: 220px;
+        .game-item {
+            background-color: #3a4257;
             border-radius: 10px;
-        }
-        .game-card p {
-            margin: 10px 0 0;
-            font-size: 18px;
+            padding: 10px;
+            text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
         }
-        .game-icon {
+        .game-item img {
             width: 77px;
-            height: 76px;
+            height: 77px;
         }
-        #loading-screen {
+        .game-item span {
+            color: white;
+            font-size: 16px;
+        }
+        .game-window {
+            flex-grow: 1;
             display: none;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #191919;
+            background: linear-gradient(#3a4257, #262c3a);
+            padding: 10px;
         }
-        #loading-screen img {
-            width: 45px;
-            height: 38px;
-        }
-        #game-container {
-            display: none;
-            flex-direction: column;
-            flex: 1;
-        }
-        #game-bar {
-            background: linear-gradient(to right, #3a4257, #262c3a);
+        .game-window .bar {
+            background-color: #3a4257;
             padding: 10px;
             display: flex;
             justify-content: space-between;
-        }
-        #game-bar button {
-            background: #3b5998;
-            border: none;
             color: white;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 5px;
         }
-        iframe {
-            flex: 1;
-            border: none;
+        .game-window iframe {
+            width: 100%;
+            height: 80vh;
+        }
+        .loading {
+            width: 100%;
+            height: 100vh;
+            background-image: url('https://i.postimg.cc/wjDd9Srq/sceen-loading.png');
+            background-size: cover;
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
         }
     </style>
 </head>
 <body>
-    <div id="header">PALBOOK GAMEROOM</div>
-    
-    <div id="game-selection">
-        <div class="game-card" onclick="startGame('https://game.streets.cafe/')">
-            <img class="game-thumbnail" src="https://i.postimg.cc/gjBBM2rK/462647821-2971095009709621-4962026585768507295-n.png" alt="Restaurant Streets">
-            <p><img class="game-icon" src="https://i.postimg.cc/mZqCBBTv/favicon1.gif" alt="Icon">Restaurant Streets</p>
+    <header>
+        PALBOOK GAMEROOM
+    </header>
+
+    <!-- Écran de chargement -->
+    <div class="loading" id="loading-screen"></div>
+
+    <div class="container">
+        <!-- Liste des jeux -->
+        <div class="game-list" id="game-list">
+            <div class="game-item" onclick="loadGame('https://game.streets.cafe/', 'Restaurant Streets', 'https://i.postimg.cc/mZqCBBTv/favicon1.gif')">
+                <img src="https://i.postimg.cc/mZqCBBTv/favicon1.gif" alt="Restaurant Streets Icon">
+                <span>Restaurant Streets</span>
+            </div>
+            <div class="game-item" onclick="loadGame('https://tomtoutmou.github.io/King.com/', 'Candy Crush Saga', 'https://i.postimg.cc/8P2RBD3R/app-icon-circular.png')">
+                <img src="https://i.postimg.cc/8P2RBD3R/app-icon-circular.png" alt="Candy Crush Icon">
+                <span>Candy Crush Saga</span>
+            </div>
+            <div class="game-item" onclick="loadGame('https://gardenscapes-fb.playrix.com/api/1/GSFView/?fb_locale=undefined', 'Gardenscapes', 'https://i.postimg.cc/ydmPdTHS/Capture-d-cran-2025-03-30-182336.png')">
+                <img src="https://i.postimg.cc/ydmPdTHS/Capture-d-cran-2025-03-30-182336.png" alt="Gardenscapes Icon">
+                <span>Gardenscapes</span>
+            </div>
         </div>
-        <div class="game-card" onclick="startGame('https://tomtoutmou.github.io/King.com/')">
-            <img class="game-thumbnail" src="https://i.postimg.cc/TwDN0Q01/Capture-d-cran-2025-03-30-145904.png" alt="Candy Crush Saga">
-            <p><img class="game-icon" src="https://i.postimg.cc/8P2RBD3R/app-icon-circular.png" alt="Icon">Candy Crush Saga</p>
+
+        <!-- Fenêtre du jeu -->
+        <div class="game-window" id="game-window">
+            <div class="bar">
+                <button onclick="goHome()">Home</button>
+                <button onclick="reloadGame()">Recharger</button>
+            </div>
+            <div class="loading" id="game-loading"></div>
+            <iframe id="game-frame" src="" style="display:none;"></iframe>
         </div>
     </div>
-    
-    <div id="loading-screen">
-        <img src="https://i.postimg.cc/DzqSTCV9/image310.gif" alt="Chargement...">
-    </div>
-    
-    <div id="game-container">
-        <div id="game-bar">
-            <button onclick="goHome()">Home</button>
-            <button onclick="reloadGame()">Recharger</button>
-        </div>
-        <iframe id="game-window" src="" width="100%" height="100%"></iframe>
-    </div>
-    
+
     <script>
-        function startGame(url) {
-            const selectionScreen = document.getElementById('game-selection');
-            selectionScreen.style.opacity = '0.5';
-            
-            setTimeout(() => {
-                selectionScreen.style.display = 'none';
-                document.getElementById('loading-screen').style.display = 'flex';
-            }, 2000);
-            
-            setTimeout(() => {
+        // Afficher l'écran de chargement au début
+        window.onload = function() {
+            setTimeout(function() {
+                // Cacher l'écran de chargement
                 document.getElementById('loading-screen').style.display = 'none';
-                document.getElementById('game-container').style.display = 'flex';
-                document.getElementById('game-window').src = url;
-            }, 7000);
+                // Afficher la liste des jeux
+                document.getElementById('game-list').style.display = 'flex';
+            }, 5000); // Attendre 5 secondes avant d'afficher la liste
         }
-        
+
+        function loadGame(url, gameName, iconUrl) {
+            // Cache la liste des jeux
+            document.getElementById('game-list').style.display = 'none';
+            
+            // Affiche la barre de chargement
+            document.getElementById('game-loading').style.display = 'block';
+
+            // Simule un retard de 5 secondes avant de charger le jeu
+            setTimeout(function() {
+                // Change le lien du jeu et affiche la fenêtre de jeu
+                document.getElementById('game-frame').src = url;
+                document.getElementById('game-frame').style.display = 'block';
+                document.getElementById('game-loading').style.display = 'none';
+                document.getElementById('game-window').style.display = 'block';
+            }, 5000);
+        }
+
         function goHome() {
-            document.getElementById('game-container').style.display = 'none';
-            document.getElementById('game-selection').style.display = 'flex';
+            // Réaffiche la liste des jeux et cache la fenêtre du jeu
+            document.getElementById('game-list').style.display = 'flex';
+            document.getElementById('game-window').style.display = 'none';
         }
-        
+
         function reloadGame() {
-            const iframe = document.getElementById('game-window');
-            iframe.src = iframe.src;
+            // Recharge le jeu dans la même fenêtre
+            document.getElementById('game-frame').src = document.getElementById('game-frame').src;
         }
     </script>
 </body>
