@@ -30,7 +30,8 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
-            display: none;
+            overflow-y: auto; /* Permet de faire défiler la liste des jeux */
+            height: 80vh;
         }
         .game-item {
             background-color: #3a4257;
@@ -68,14 +69,14 @@
             height: 80vh;
         }
         .loading {
-            width: 100%;
-            height: 100vh;
-            background-image: url('https://i.postimg.cc/wjDd9Srq/sceen-loading.png');
-            background-size: cover;
-            display: block;
             position: fixed;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.postimg.cc/wjDd9Srq/sceen-loading.png') center center no-repeat;
+            background-size: contain;
+            display: block;
         }
     </style>
 </head>
@@ -89,7 +90,7 @@
 
     <div class="container">
         <!-- Liste des jeux -->
-        <div class="game-list" id="game-list">
+        <div class="game-list" id="game-list" style="display: none;">
             <div class="game-item" onclick="loadGame('https://game.streets.cafe/', 'Restaurant Streets', 'https://i.postimg.cc/mZqCBBTv/favicon1.gif')">
                 <img src="https://i.postimg.cc/mZqCBBTv/favicon1.gif" alt="Restaurant Streets Icon">
                 <span>Restaurant Streets</span>
@@ -98,9 +99,9 @@
                 <img src="https://i.postimg.cc/8P2RBD3R/app-icon-circular.png" alt="Candy Crush Icon">
                 <span>Candy Crush Saga</span>
             </div>
-            <div class="game-item" onclick="loadGame('https://gardenscapes-fb.playrix.com/api/1/GSFView/?fb_locale=undefined', 'Gardenscapes', 'https://i.postimg.cc/ydmPdTHS/Capture-d-cran-2025-03-30-182336.png')">
+            <div class="game-item" onclick="loadGame('https://gardenscapes-fb.playrix.com/api/1/GSFView/?fb_locale=undefined', 'Gardenscapes - New Acres', 'https://i.postimg.cc/ydmPdTHS/Capture-d-cran-2025-03-30-182336.png')">
                 <img src="https://i.postimg.cc/ydmPdTHS/Capture-d-cran-2025-03-30-182336.png" alt="Gardenscapes Icon">
-                <span>Gardenscapes</span>
+                <span>Gardenscapes - New Acres</span>
             </div>
         </div>
 
@@ -110,42 +111,39 @@
                 <button onclick="goHome()">Home</button>
                 <button onclick="reloadGame()">Recharger</button>
             </div>
-            <div class="loading" id="game-loading"></div>
             <iframe id="game-frame" src="" style="display:none;"></iframe>
         </div>
     </div>
 
     <script>
-        // Afficher l'écran de chargement au début
         window.onload = function() {
             setTimeout(function() {
-                // Cacher l'écran de chargement
+                // Cache l'écran de chargement et affiche la liste des jeux après 5 secondes
                 document.getElementById('loading-screen').style.display = 'none';
-                // Afficher la liste des jeux
                 document.getElementById('game-list').style.display = 'flex';
-            }, 5000); // Attendre 5 secondes avant d'afficher la liste
-        }
+            }, 5000);
+        };
 
         function loadGame(url, gameName, iconUrl) {
             // Cache la liste des jeux
-            document.getElementById('game-list').style.display = 'none';
-            
+            document.querySelector('.game-list').style.display = 'none';
+
             // Affiche la barre de chargement
-            document.getElementById('game-loading').style.display = 'block';
+            document.getElementById('loading').style.display = 'block';
 
             // Simule un retard de 5 secondes avant de charger le jeu
             setTimeout(function() {
                 // Change le lien du jeu et affiche la fenêtre de jeu
                 document.getElementById('game-frame').src = url;
                 document.getElementById('game-frame').style.display = 'block';
-                document.getElementById('game-loading').style.display = 'none';
+                document.getElementById('loading').style.display = 'none';
                 document.getElementById('game-window').style.display = 'block';
             }, 5000);
         }
 
         function goHome() {
             // Réaffiche la liste des jeux et cache la fenêtre du jeu
-            document.getElementById('game-list').style.display = 'flex';
+            document.querySelector('.game-list').style.display = 'flex';
             document.getElementById('game-window').style.display = 'none';
         }
 
