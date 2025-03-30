@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palbook Gameroom</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background: #191919;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        #header {
+            background: #3b5998;
+            color: white;
+            text-align: left;
+            padding: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding-left: 20px;
+        }
+        #game-selection {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .game-card {
+            background: #262c3a;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: opacity 1s ease;
+        }
+        .game-card img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+        }
+        .game-card p {
+            margin: 10px 0 0;
+            font-size: 18px;
+        }
+        #loading-screen {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #191919;
+        }
+        #loading-screen img {
+            width: 300px;
+        }
+        #game-container {
+            display: none;
+            flex-direction: column;
+            flex: 1;
+        }
+        #game-bar {
+            background: linear-gradient(to right, #3a4257, #262c3a);
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #game-bar button {
+            background: #3b5998;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        iframe {
+            flex: 1;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">PALBOOK GAMEROOM</div>
+    
+    <div id="game-selection">
+        <div class="game-card" onclick="startGame('https://game.streets.cafe/')">
+            <img src="https://i.postimg.cc/gjBBM2rK/462647821-2971095009709621-4962026585768507295-n.png" alt="Restaurant Streets">
+            <p>Restaurant Streets</p>
+        </div>
+    </div>
+    
+    <div id="loading-screen">
+        <img src="https://i.postimg.cc/25fMDSBN/ezgif-com-webp-to-gif-converter.gif" alt="Chargement...">
+    </div>
+    
+    <div id="game-container">
+        <div id="game-bar">
+            <button onclick="goHome()">Home</button>
+            <button onclick="reloadGame()">Recharger</button>
+        </div>
+        <iframe id="game-window" src="" width="100%" height="100%"></iframe>
+    </div>
+    
+    <script>
+        function startGame(url) {
+            const selectionScreen = document.getElementById('game-selection');
+            selectionScreen.style.opacity = '0.5';
+            
+            setTimeout(() => {
+                selectionScreen.style.display = 'none';
+                document.getElementById('loading-screen').style.display = 'flex';
+            }, 2000);
+            
+            setTimeout(() => {
+                document.getElementById('loading-screen').style.display = 'none';
+                document.getElementById('game-container').style.display = 'flex';
+                document.getElementById('game-window').src = url;
+            }, 7000);
+        }
+        
+        function goHome() {
+            document.getElementById('game-container').style.display = 'none';
+            document.getElementById('game-selection').style.display = 'flex';
+        }
+        
+        function reloadGame() {
+            const iframe = document.getElementById('game-window');
+            iframe.src = iframe.src;
+        }
+    </script>
+</body>
+</html>
