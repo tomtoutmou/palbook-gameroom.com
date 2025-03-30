@@ -91,63 +91,63 @@
             border-radius: 5px;
         }
         iframe {
-            flex: 1;
-            border: none;
+            fléchir: 1;
+            frontière: aucun;
         }
     </style>
-</head>
-<body>
-    <div id="header">PALBOOK GAMEROOM</div>
+</tête>
+<corps>
+    <div identifiant="en-tête">PALBOOK GAMEROOM</div>
     
-    <div id="game-selection">
-        <div class="game-card" onclick="startGame('https://game.streets.cafe/')">
-            <img class="game-thumbnail" src="https://i.postimg.cc/gjBBM2rK/462647821-2971095009709621-4962026585768507295-n.png" alt="Restaurant Streets">
-            <p><img class="game-icon" src="https://i.postimg.cc/mZqCBBTv/favicon1.gif" alt="Icon">Restaurant Streets</p>
+    <div identifiant="sélection de jeu">
+        <div classe="carte de jeu" oncliquez="démarrerJeu('https://game.streets.cafe/')">
+            <img classe="jeu-pouce" src="https://i.postimg.cc/gjBBM2rK/462647821-2971095009709621-4962026585768507295-n.png" alt="Rues des restaurants">
+            <p><img classe="icône de jeu" src="https://i.postimg.cc/mZqCBBTv/favicon1.gif" alt="Icône">Rues du restaurant</p>
         </div>
-        <div class="game-card" onclick="startGame('https://tomtoutmou.github.io/King.com/')">
-            <img class="game-thumbnail" src="https://i.postimg.cc/TwDN0Q01/Capture-d-cran-2025-03-30-145904.png" alt="Candy Crush Saga">
-            <p><img class="game-icon" src="https://i.postimg.cc/8P2RBD3R/app-icon-circular.png" alt="Icon">Candy Crush Saga</p>
+        <div classe="carte de jeu" oncliquez="démarrerJeu('https://tomtoutmou.github.io/King.com/')">
+            <img classe="jeu-pouce" src="https://i.postimg.cc/TwDN0Q01/Capture-d-cran-2025-03-30-145904.png" alt="Saga Candy Crush">
+            <p><img classe="icône de jeu" src="https://i.postimg.cc/8P2RBD3R/app-icon-circular.png" alt="Icône">Écrasement de bonbons Saga</p>
         </div>
     </div>
     
-    <div id="loading-screen">
+    <div identifiant="écran de chargement">
         <img src="https://i.postimg.cc/DzqSTCV9/image310.gif" alt="Chargement...">
     </div>
     
-    <div id="game-container">
-        <div id="game-bar">
-            <button onclick="goHome()">Home</button>
-            <button onclick="reloadGame()">Recharger</button>
+    <div identifiant="conteneur de jeu">
+        <div identifiant="barre de jeu">
+            <bouton oncliquez="goHome()">Accueil</bouton>
+            <bouton oncliquez="rechargeurJeu()">Rechargeur</bouton>
         </div>
-        <iframe id="game-window" src="" width="100%" height="100%"></iframe>
+        <iframe identifiant="fenêtre de jeu" src="" grandur="100%" hauteur="100%"></iframe>
     </div>
     
     <script>
-        function startGame(url) {
-            const selectionScreen = document.getElementById('game-selection');
-            selectionScreen.style.opacity = '0.5';
+        fonction démarrerJeu(url) {
+            const sélectionÉcran = document.getElementById('game-selection');
+            sélectionÉcran.style.opacité = '0,5';
             
-            setTimeout(() => {
-                selectionScreen.style.display = 'none';
-                document.getElementById('loading-screen').style.display = 'flex';
+            définir le délai(() => {
+                sélectionÉcran.style.affichage = 'aucun';
+                document.getElementById("écran de charge ").style.affichage = "flex";
             }, 2000);
             
-            setTimeout(() => {
-                document.getElementById('loading-screen').style.display = 'none';
-                document.getElementById('game-container').style.display = 'flex';
-                document.getElementById('game-window').src = url;
+            définir le délai(() => {
+                document.getElementById("écran de charge ").style.affichage = 'aucun';
+                document.getElementById(" conteneur de jeu ").style.affichage = "flex";
+                document.getElementById("fenêtre de jeu").src = url;
             }, 7000);
         }
         
-        function goHome() {
-            document.getElementById('game-container').style.display = 'none';
-            document.getElementById('game-selection').style.display = 'flex';
+        fonction goHome() {
+            document.getElementById(" conteneur de jeu ").style.affichage = 'aucun';
+            document.getElementById('game-selection').style.affichage = "flex";
         }
         
-        function reloadGame() {
-            const iframe = document.getElementById('game-window');
+        fonction rechargerJeu() {
+            const iframe = document.getElementById("fenêtre de jeu");
             iframe.src = iframe.src;
         }
     </script>
-</body>
+</corps>
 </html>
