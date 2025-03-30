@@ -29,6 +29,7 @@
             justify-content: center;
             align-items: center;
             height: 100%;
+            gap: 20px;
         }
         .game-card {
             background: #262c3a;
@@ -37,15 +38,27 @@
             text-align: center;
             cursor: pointer;
             transition: opacity 1s ease;
+            width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .game-card img {
-            width: 200px;
-            height: auto;
+        .game-card img.game-thumbnail {
+            width: 220px;
+            height: 220px;
             border-radius: 10px;
         }
         .game-card p {
             margin: 10px 0 0;
             font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .game-icon {
+            width: 77px;
+            height: 76px;
         }
         #loading-screen {
             display: none;
@@ -55,7 +68,8 @@
             background: #191919;
         }
         #loading-screen img {
-            width: 300px;
+            width: 45px;
+            height: 38px;
         }
         #game-container {
             display: none;
@@ -87,13 +101,17 @@
     
     <div id="game-selection">
         <div class="game-card" onclick="startGame('https://game.streets.cafe/')">
-            <img src="https://i.postimg.cc/gjBBM2rK/462647821-2971095009709621-4962026585768507295-n.png" alt="Restaurant Streets">
-            <p>Restaurant Streets</p>
+            <img class="game-thumbnail" src="https://i.postimg.cc/gjBBM2rK/462647821-2971095009709621-4962026585768507295-n.png" alt="Restaurant Streets">
+            <p><img class="game-icon" src="https://i.postimg.cc/mZqCBBTv/favicon1.gif" alt="Icon">Restaurant Streets</p>
+        </div>
+        <div class="game-card" onclick="startGame('https://tomtoutmou.github.io/King.com/')">
+            <img class="game-thumbnail" src="https://i.postimg.cc/TwDN0Q01/Capture-d-cran-2025-03-30-145904.png" alt="Candy Crush Saga">
+            <p><img class="game-icon" src="https://i.postimg.cc/8P2RBD3R/app-icon-circular.png" alt="Icon">Candy Crush Saga</p>
         </div>
     </div>
     
     <div id="loading-screen">
-        <img src="https://i.postimg.cc/25fMDSBN/ezgif-com-webp-to-gif-converter.gif" alt="Chargement...">
+        <img src="https://i.postimg.cc/DzqSTCV9/image310.gif" alt="Chargement...">
     </div>
     
     <div id="game-container">
